@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>🌿 HealthHub - คำนวณ BMI & แคลอรี่</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1>🌿 HealthHub</h1>
+      <p class="tagline">จัดการสุขภาพด้วยการคำนวณ BMI และแคลอรี่</p>
+    </div>
+  </header>
+  <main class="container">
+
+    <!-- การ์ดคำนวณ BMI -->
+    <section class="card bmi-card">
+      <div class="card-header">
+        <h2>📊 คำนวณ BMI และแคลอรี่ที่ควรกิน</h2>
+      </div>
+      <form id="bmi-form">
+        <label>
+          ส่วนสูง (ซม.)
+          <input type="number" id="heightCm" required min="100" max="250">
+        </label>
+        <label>
+          น้ำหนัก (กก.)
+          <input type="number" id="weightKg" required min="20" max="250" step="0.1">
+        </label>
+        <label>
+          อายุ (ปี)
+          <input type="number" id="age" required min="1" max="150">
+        </label>
+        <label>
+          เพศ
+          <select id="gender" required>
+            <option value="male">ชาย</option>
+            <option value="female">หญิง</option>
+          </select>
+        </label>
+        <label>
+          ระดับกิจกรรมวันต่อวัน
+          <select id="activityLevel" required>
+            <option value="sedentary">น้อย (นั่งส่วนใหญ่ของวัน)</option>
+            <option value="light">เบา (ออกกำลังกายเบา 1-3 วัน/สัปดาห์)</option>
+            <option value="moderate" selected>ปานกลาง (ออกกำลังกายปกติ 3-5 วัน/สัปดาห์)</option>
+            <option value="active">สูง (ออกกำลังกายหนัก 6-7 วัน/สัปดาห์)</option>
+            <option value="veryActive">สูงมาก (ออกกำลังกายหนักมากหรืองานหนัก)</option>
+          </select>
+        </label>
+        <button type="submit">คำนวณ BMI และแคลอรี่</button>
+      </form>
+      <div id="bmi-result"></div>
+    </section>
+
+    <!-- การ์ดบันทึกอาหารวันนี้ -->
+    <section class="card food-card">
+      <div class="card-header">
+        <h2>🍎 บันทึกอาหารวันนี้</h2>
+      </div>
+      <form id="food-form">
+        <label>
+          เลือกอาหาร
+          <select id="foodSelect"></select>
+        </label>
+
+        <label>
+          จำนวน (หน่วย)
+          <input type="number" id="quantity" value="1" min="0.25" step="0.25">
+        </label>
+
+        <label>
+          มื้ออาหาร
+          <select id="mealType"></select>
+        </label>
+
+        <button type="submit">เพิ่มรายการ</button>
+      </form>
+
+      <h3>รายการอาหารวันนี้</h3>
+      <table id="food-table">
+        <thead>
+          <tr>
+            <th>มื้ออาหาร</th>
+            <th>อาหาร</th>
+            <th>จำนวน</th>
+            <th>แคลอรี่ต่อหน่วย</th>
+            <th>รวมแคลอรี่</th>
+            <th>จัดการ</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="total">
+        แคลอรี่รวมวันนี้: <span id="total-calories">0</span> kcal
+      </div>
+
+      <div id="calorie-status"></div>
+
+      <!-- ส่วนเพิ่มอาหารกำหนดเอง -->
+      <div class="custom-food-section" style="margin-top: 20px; border-top: 2px solid #e0e0e0; padding-top: 16px;">
+        <h3>📝 เพิ่มเมนูอาหารของคุณเอง</h3>
+        <div class="form-group">
+          <label>ชื่ออาหาร <input type="text" id="customFoodName" placeholder="เช่น ปั้ง 50 บาท"></label>
+          <label>แคลอรี่ต่อหน่วย <input type="number" id="customFoodCalories" placeholder="เช่น 250" min="0"></label>
+          <label>หน่วย <input type="text" id="customFoodUnit" placeholder="เช่น ชิ้น, จาน, แก้ว"></label>
+          <button type="button" class="btn-add-custom" onclick="addCustomFood()">+ เพิ่มเมนูใหม่</button>
+        </div>
+      </div>
+
+      <!-- ปุ่มส่งออกรายงาน -->
+      <div style="margin-top: 16px;">
+        <button type="button" class="btn-export" onclick="exportReport()" style="background: #6c757d;">📊 ส่งออกรายงาน</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cordia New', 'Angsana New', Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #2d7d4a 0%, #4a9d6f 100%);
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tagline {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Card Styling */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(45, 125, 74, 0.1);
+  border-top: 4px solid #2d7d4a;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(45, 125, 74, 0.15);
+}
+
+.card-header {
+  border-bottom: 2px solid #e8f5e9;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.card-header h2 {
+  color: #2d7d4a;
+  font-size: 1.5em;
+}
+
+/* Form Styling */
+form label {
+  display: block;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+form input:focus,
+form select:focus {
+  outline: none;
+  border-color: #2d7d4a;
+  box-shadow: 0 0 5px rgba(45, 125, 74, 0.3);
+}
+
+/* Button Styling */
+button {
+  background: linear-gradient(135deg, #2d7d4a 0%, #4a9d6f 100%);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(45, 125, 74, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.btn-add-custom {
+  background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 100%);
+  width: auto;
+  display: inline-block;
+}
+
+.btn-export {
+  background: linear-gradient(135deg, #6c757d 0%, #8a95a0 100%);
+  width: auto;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+}
+
+table thead {
+  background: #e8f5e9;
+}
+
+table th {
+  background: #2d7d4a;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* Result Display */
+#bmi-result,
+#calorie-status {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.bmi-info {
+  background: #e8f5e9;
+  border-left: 4px solid #2d7d4a;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.bmi-info strong {
+  color: #2d7d4a;
+}
+
+.status-good {
+  background: #c8e6c9;
+  border-left: 4px solid #27ae60;
+  color: #1b5e20;
+}
+
+.status-warning {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  color: #856404;
+}
+
+.status-danger {
+  background: #f8d7da;
+  border-left: 4px solid #dc3545;
+  color: #721c24;
+}
+
+/* Total Calories */
+.total {
+  background: linear-gradient(135deg, #fff9e6 0%, #ffe082 100%);
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: center;
+  color: #e65100;
+  margin-bottom: 15px;
+}
+
+#total-calories {
+  color: #ff6f00;
+  font-size: 1.3em;
+}
+
+/* Custom Food Section */
+.custom-food-section {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.custom-food-section h3 {
+  color: #2d7d4a;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form-group label {
+  flex: 1;
+  min-width: 150px;
+  margin-bottom: 0;
+}
+
+.form-group input {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* Delete Button */
+.btn-delete {
+  background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: all 0.3s;
+}
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, #c82333 0%, #c0392b 100%);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.8em;
+  }
+
+  .card {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  table {
+    font-size: 0.85em;
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
+
+  .form-group label {
+    min-width: 100%;
+  }
+
+  button {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.5em;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  table {
+    font-size: 0.75em;
+  }
+}
