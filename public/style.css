@@ -216,48 +216,114 @@ table tbody tr:hover {
 
 /* Custom Food Section */
 .custom-food-section {
-  background: #f5f5f5;
-  padding: 15px;
-  border-radius: 5px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e8f5e9 100%);
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px dashed #2d7d4a;
+  margin-top: 30px;
 }
 
 .custom-food-section h3 {
   color: #2d7d4a;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-food-section h3::before {
+  content: "📝";
+  font-size: 1.3em;
+}
+
+/* Form Group Layout */
+.form-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
   margin-bottom: 15px;
 }
 
-.form-group {
+.form-group label {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 0;
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
-.form-group label {
-  flex: 1;
-  min-width: 150px;
-  margin-bottom: 0;
+.form-group label:focus-within {
+  border-color: #2d7d4a;
+  box-shadow: 0 0 8px rgba(45, 125, 74, 0.2);
+  background: #f9fff8;
+}
+
+.form-group label > span {
+  font-weight: 600;
+  color: #2d7d4a;
+  font-size: 0.95em;
 }
 
 .form-group input {
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-
-/* Delete Button */
-.btn-delete {
-  background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 0.85em;
+  padding: 10px 12px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1em;
   transition: all 0.3s;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.btn-delete:hover {
-  background: linear-gradient(135deg, #c82333 0%, #c0392b 100%);
-  transform: scale(1.05);
+.form-group input:focus {
+  outline: none;
+  border-color: #2d7d4a;
+  background: #f9fff8;
+  box-shadow: 0 0 5px rgba(45, 125, 74, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+/* Add Button */
+.btn-add-custom {
+  background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 100%);
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+}
+
+.btn-add-custom:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(30, 136, 229, 0.4);
+  background: linear-gradient(135deg, #1565c0 0%, #1e88e5 100%);
+}
+
+.btn-add-custom:active {
+  transform: translateY(-1px);
+}
+
+.btn-add-custom::before {
+  content: "➕";
+  font-size: 1.1em;
 }
 
 /* Responsive */
@@ -290,6 +356,24 @@ table tbody tr:hover {
 
   button {
     padding: 10px 16px;
+  }
+
+  .custom-food-section {
+    padding: 18px;
+    margin-top: 20px;
+  }
+
+  .form-group {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .custom-food-section h3 {
+    font-size: 1.1em;
+  }
+
+  .form-group label {
+    padding: 10px;
   }
 }
 

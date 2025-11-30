@@ -101,14 +101,38 @@
       <div id="calorie-status"></div>
 
       <!-- ส่วนเพิ่มอาหารกำหนดเอง -->
-      <div class="custom-food-section" style="margin-top: 20px; border-top: 2px solid #e0e0e0; padding-top: 16px;">
-        <h3>📝 เพิ่มเมนูอาหารของคุณเอง</h3>
+      <div class="custom-food-section">
+        <h3>เพิ่มเมนูอาหารของคุณเอง</h3>
         <div class="form-group">
-          <label>ชื่ออาหาร <input type="text" id="customFoodName" placeholder="เช่น ปั้ง 50 บาท"></label>
-          <label>แคลอรี่ต่อหน่วย <input type="number" id="customFoodCalories" placeholder="เช่น 250" min="0"></label>
-          <label>หน่วย <input type="text" id="customFoodUnit" placeholder="เช่น ชิ้น, จาน, แก้ว"></label>
-          <button type="button" class="btn-add-custom" onclick="addCustomFood()">+ เพิ่มเมนูใหม่</button>
+          <label>
+            <span>ชื่ออาหาร</span>
+            <input 
+              type="text" 
+              id="customFoodName" 
+              placeholder="เช่น ปั้ง 50 บาท">
+          </label>
+          
+          <label>
+            <span>แคลอรี่ต่อหน่วย</span>
+            <input 
+              type="number" 
+              id="customFoodCalories" 
+              placeholder="เช่น 250" 
+              min="0">
+          </label>
+          
+          <label>
+            <span>หน่วย</span>
+            <input 
+              type="text" 
+              id="customFoodUnit" 
+              placeholder="เช่น ชิ้น, จาน, แก้ว">
+          </label>
         </div>
+        
+        <button type="button" class="btn-add-custom" onclick="addCustomFood()">
+          เพิ่มเมนูใหม่
+        </button>
       </div>
 
       <!-- ปุ่มส่งออกรายงาน -->
