@@ -2,146 +2,290 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>🌿 HealthHub - คำนวณ BMI & แคลอรี่</title>
+  <title>HealthHub — BMI & Calorie Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="header-content">
-      <h1>🌿 HealthHub</h1>
-      <p class="tagline">จัดการสุขภาพด้วยการคำนวณ BMI และแคลอรี่</p>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <span class="brand-name">HealthHub</span>
+      </div>
+      <span class="header-date" id="current-date"></span>
     </div>
   </header>
-  <main class="container">
 
-    <!-- การ์ดคำนวณ BMI -->
-    <section class="card bmi-card">
-      <div class="card-header">
-        <h2>📊 คำนวณ BMI และแคลอรี่ที่ควรกิน</h2>
-      </div>
-      <form id="bmi-form">
-        <label>
-          ส่วนสูง (ซม.)
-          <input type="number" id="heightCm" required min="100" max="250">
-        </label>
-        <label>
-          น้ำหนัก (กก.)
-          <input type="number" id="weightKg" required min="20" max="250" step="0.1">
-        </label>
-        <label>
-          อายุ (ปี)
-          <input type="number" id="age" required min="1" max="150">
-        </label>
-        <label>
-          เพศ
-          <select id="gender" required>
-            <option value="male">ชาย</option>
-            <option value="female">หญิง</option>
-          </select>
-        </label>
-        <label>
-          ระดับกิจกรรมวันต่อวัน
-          <select id="activityLevel" required>
-            <option value="sedentary">น้อย (นั่งส่วนใหญ่ของวัน)</option>
-            <option value="light">เบา (ออกกำลังกายเบา 1-3 วัน/สัปดาห์)</option>
-            <option value="moderate" selected>ปานกลาง (ออกกำลังกายปกติ 3-5 วัน/สัปดาห์)</option>
-            <option value="active">สูง (ออกกำลังกายหนัก 6-7 วัน/สัปดาห์)</option>
-            <option value="veryActive">สูงมาก (ออกกำลังกายหนักมากหรืองานหนัก)</option>
-          </select>
-        </label>
-        <button type="submit">คำนวณ BMI และแคลอรี่</button>
-      </form>
-      <div id="bmi-result"></div>
-    </section>
+  <div class="app-layout">
 
-    <!-- การ์ดบันทึกอาหารวันนี้ -->
-    <section class="card food-card">
-      <div class="card-header">
-        <h2>🍎 บันทึกอาหารวันนี้</h2>
-      </div>
-      <form id="food-form">
-        <label>
-          เลือกอาหาร
-          <select id="foodSelect"></select>
-        </label>
-
-        <label>
-          จำนวน (หน่วย)
-          <input type="number" id="quantity" value="1" min="0.25" step="0.25">
-        </label>
-
-        <label>
-          มื้ออาหาร
-          <select id="mealType"></select>
-        </label>
-
-        <button type="submit">เพิ่มรายการ</button>
-      </form>
-
-      <h3>รายการอาหารวันนี้</h3>
-      <table id="food-table">
-        <thead>
-          <tr>
-            <th>มื้ออาหาร</th>
-            <th>อาหาร</th>
-            <th>จำนวน</th>
-            <th>แคลอรี่ต่อหน่วย</th>
-            <th>รวมแคลอรี่</th>
-            <th>จัดการ</th> 
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-
-      <div class="total">
-        แคลอรี่รวมวันนี้: <span id="total-calories">0</span> kcal
-      </div>
-
-      <div id="calorie-status"></div>
-
-      <!-- ส่วนเพิ่มอาหารกำหนดเอง -->
-      <div class="custom-food-section">
-        <h3>เพิ่มเมนูอาหารของคุณเอง</h3>
-        <div class="form-group">
-          <label>
-            <span>ชื่ออาหาร</span>
-            <input 
-              type="text" 
-              id="customFoodName" 
-              placeholder="เช่น ปั้ง 50 บาท">
-          </label>
-          
-          <label>
-            <span>แคลอรี่ต่อหน่วย</span>
-            <input 
-              type="number" 
-              id="customFoodCalories" 
-              placeholder="เช่น 250" 
-              min="0">
-          </label>
-          
-          <label>
-            <span>หน่วย</span>
-            <input 
-              type="text" 
-              id="customFoodUnit" 
-              placeholder="เช่น ชิ้น, จาน, แก้ว">
-          </label>
+    <!-- ══ LEFT: BMI ══ -->
+    <aside class="panel panel-bmi">
+      <div class="panel-inner">
+        <div class="panel-header">
+          <p class="panel-label">การประเมิน</p>
+          <h2 class="panel-title">BMI & แคลอรี่</h2>
         </div>
-        
-        <button type="button" class="btn-add-custom" onclick="addCustomFood()">
-          เพิ่มเมนูใหม่
-        </button>
+        <form id="bmi-form" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label" for="heightCm">ส่วนสูง</label>
+              <div class="input-wrap">
+                <input type="number" id="heightCm" placeholder="170" min="100" max="250" required>
+                <span class="input-unit">ซม.</span>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="weightKg">น้ำหนัก</label>
+              <div class="input-wrap">
+                <input type="number" id="weightKg" placeholder="65" min="20" max="250" step="0.1" required>
+                <span class="input-unit">กก.</span>
+              </div>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label" for="age">อายุ</label>
+              <div class="input-wrap">
+                <input type="number" id="age" placeholder="30" min="1" max="150" required>
+                <span class="input-unit">ปี</span>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="gender">เพศ</label>
+              <div class="select-wrap">
+                <select id="gender" required>
+                  <option value="male">ชาย</option>
+                  <option value="female">หญิง</option>
+                </select>
+                <svg class="select-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="field field-full">
+            <label class="field-label" for="activityLevel">ระดับกิจกรรม</label>
+            <div class="select-wrap">
+              <select id="activityLevel" required>
+                <option value="sedentary">น้อยมาก (นั่งส่วนใหญ่)</option>
+                <option value="light">เบา (ออกกำลัง 1–3 วัน/สัปดาห์)</option>
+                <option value="moderate" selected>ปานกลาง (3–5 วัน/สัปดาห์)</option>
+                <option value="active">สูง (6–7 วัน/สัปดาห์)</option>
+                <option value="veryActive">สูงมาก (งานหนักหรือนักกีฬา)</option>
+              </select>
+              <svg class="select-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            คำนวณ
+          </button>
+        </form>
+        <div id="bmi-result" style="display:none;"></div>
       </div>
+    </aside>
 
-      <!-- ปุ่มส่งออกรายงาน -->
-      <div style="margin-top: 16px;">
-        <button type="button" class="btn-export" onclick="exportReport()" style="background: #6c757d;">📊 ส่งออกรายงาน</button>
+    <!-- ══ RIGHT: FOOD + PROGRESS ══ -->
+    <main class="panel panel-food">
+      <div class="panel-inner">
+
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="today">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            บันทึกอาหาร
+          </button>
+          <button class="tab-btn" data-tab="progress">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            ความคืบหน้า
+          </button>
+        </div>
+
+        <!-- ─ Tab Today ─ -->
+        <div class="tab-content active" id="tab-today">
+
+          <div class="calorie-overview">
+            <div class="cal-header">
+              <div class="cal-main">
+                <span class="cal-value" id="total-calories">0</span>
+                <span class="cal-unit">kcal</span>
+              </div>
+              <span class="cal-target-label" id="cal-target-label">กรุณาคำนวณ BMI ก่อน</span>
+            </div>
+            <div class="calorie-bar"><div class="calorie-bar-fill" id="calorie-bar-fill"></div></div>
+            <div id="calorie-status" class="calorie-status-text"></div>
+          </div>
+
+          <div class="form-card">
+            <p class="form-card-label">เพิ่มรายการอาหาร</p>
+            <form id="food-form" novalidate>
+              <div class="field" style="margin-bottom:12px;">
+                <label class="field-label">รายการอาหาร</label>
+                <div class="search-box" id="searchBox">
+                  <div class="search-selected" id="searchSelected" style="display:none;">
+                    <div class="search-selected-info">
+                      <span class="search-selected-name" id="searchSelectedName"></span>
+                      <span class="search-selected-cal" id="searchSelectedCal"></span>
+                    </div>
+                    <button type="button" class="search-clear" onclick="clearFoodSelection()" aria-label="ล้างการเลือก">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                  </div>
+                  <div class="search-input-wrap" id="searchInputWrap">
+                    <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="foodSearch" placeholder="พิมพ์ชื่ออาหาร เช่น ไก่ทอด, ข้าวผัด..." autocomplete="off" aria-label="ค้นหาอาหาร" aria-haspopup="listbox" aria-expanded="false">
+                  </div>
+                  <div class="search-dropdown" id="searchDropdown" role="listbox"></div>
+                </div>
+              </div>
+              <div class="food-form-row">
+                <div class="field">
+                  <label class="field-label" for="quantity">จำนวน</label>
+                  <input type="number" id="quantity" value="1" min="0.25" step="0.25">
+                </div>
+                <div class="field">
+                  <label class="field-label" for="mealType">มื้อ</label>
+                  <div class="select-wrap">
+                    <select id="mealType"></select>
+                    <svg class="select-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </div>
+                <div class="field field-btn">
+                  <label class="field-label" style="visibility:hidden;">เพิ่ม</label>
+                  <button type="submit" class="btn btn-add">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    เพิ่ม
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="table-card">
+            <div class="table-wrap" id="table-wrap">
+              <table id="food-table">
+                <thead>
+                  <tr><th>มื้อ</th><th>รายการ</th><th>จำนวน</th><th>kcal/หน่วย</th><th>รวม</th><th></th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="table-empty" id="table-empty">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+              <p>ยังไม่มีรายการ — เพิ่มอาหารด้านบน</p>
+            </div>
+          </div>
+
+          <div class="custom-section">
+            <div class="section-divider"><span>เพิ่มเมนูของคุณเอง</span></div>
+            <div class="custom-grid">
+              <div class="field">
+                <label class="field-label" for="customFoodName">ชื่ออาหาร</label>
+                <input type="text" id="customFoodName" placeholder="เช่น ข้าวมันไก่">
+              </div>
+              <div class="field">
+                <label class="field-label" for="customFoodCalories">แคลอรี่/หน่วย</label>
+                <input type="number" id="customFoodCalories" placeholder="350" min="0">
+              </div>
+              <div class="field">
+                <label class="field-label" for="customFoodUnit">หน่วย</label>
+                <input type="text" id="customFoodUnit" placeholder="จาน, ชิ้น, แก้ว">
+              </div>
+            </div>
+            <div class="custom-actions">
+              <button type="button" class="btn btn-secondary" onclick="addCustomFood()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                เพิ่มเมนู
+              </button>
+              <button type="button" class="btn btn-ghost" onclick="exportReport()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                ส่งออกรายงาน
+              </button>
+            </div>
+          </div>
+
+        </div><!-- end tab-today -->
+
+        <!-- ─ Tab Progress ─ -->
+        <div class="tab-content" id="tab-progress">
+
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div>
+                <p class="panel-label">7 วันที่ผ่านมา</p>
+                <h3 class="chart-title">แคลอรี่รายวัน</h3>
+              </div>
+              <div class="chart-legend">
+                <span class="legend-item"><span class="legend-dot" style="background:#16a34a;"></span>บริโภค</span>
+                <span class="legend-item"><span class="legend-line-dashed"></span>เป้าหมาย</span>
+              </div>
+            </div>
+            <div class="chart-wrap" id="calorie-chart-wrap" style="display:none;">
+              <canvas id="calorie-chart"></canvas>
+            </div>
+            <div class="chart-empty" id="calorie-chart-empty">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              <p>เริ่มบันทึกอาหารเพื่อดูกราฟ</p>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div>
+                <p class="panel-label">ติดตามน้ำหนัก</p>
+                <h3 class="chart-title">น้ำหนักตัว</h3>
+              </div>
+            </div>
+            <div class="weight-input-row">
+              <div class="field">
+                <label class="field-label" for="weightDate">วันที่</label>
+                <input type="date" id="weightDate">
+              </div>
+              <div class="field">
+                <label class="field-label" for="weightValue">น้ำหนัก</label>
+                <div class="input-wrap">
+                  <input type="number" id="weightValue" placeholder="70.5" min="20" max="300" step="0.1">
+                  <span class="input-unit">กก.</span>
+                </div>
+              </div>
+              <div class="field field-btn">
+                <label class="field-label" style="visibility:hidden;">บันทึก</label>
+                <button type="button" class="btn btn-add" onclick="addWeightEntry()">บันทึก</button>
+              </div>
+            </div>
+            <div class="chart-wrap" id="weight-chart-wrap" style="display:none;">
+              <canvas id="weight-chart"></canvas>
+            </div>
+            <div class="chart-empty" id="weight-chart-empty">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <p>บันทึกน้ำหนักอย่างน้อย 2 ครั้งเพื่อดูกราฟ</p>
+            </div>
+            <div id="weight-table-wrap" style="display:none;">
+              <div class="section-divider" style="margin:20px 0 12px;"><span>ประวัติน้ำหนัก</span></div>
+              <div class="weight-table-scroll">
+                <table id="weight-table">
+                  <thead>
+                    <tr><th>วันที่</th><th>น้ำหนัก</th><th>เปลี่ยนแปลง</th><th></th></tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end tab-progress -->
+
       </div>
-    </section>
-  </main>
+    </main>
+  </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
